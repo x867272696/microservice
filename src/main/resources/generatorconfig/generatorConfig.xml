@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "../java/org/mybatis/generator/config/xml/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<!-- defaultModelType: flat/conditional -->
+	<context id="Mysql" defaultModelType="flat"
+		targetRuntime="MyBatis3Simple">
+
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://172.17.116.5:3306/test" userId="root"
+			password="112885">
+		</jdbcConnection>
+		<!-- 强迫使用decimals -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="true" />
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator
+			targetPackage="com.htl.microservice.entity" targetProject="src/main/java/">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="src/main/resources/">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 ANNOTATEDMAPPER/XMLMAPPER -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.htl.microservice.dao" targetProject="src/main/java/">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="user" domainObjectName="User">
+			<generatedKey column="id" sqlStatement="mysql"
+				type="post" identity="true" />
+		</table>
+	</context>
+</generatorConfiguration>

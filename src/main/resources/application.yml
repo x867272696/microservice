@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: microservice
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    encoding: UTF-8
+    content-type: text/html
+    mode: LEGACYHTML5
+  profiles:
+    active: dev
+    http:
+      encoding:
+        charset: UTF-8
+        force: true
+        enabled: true
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /microservice
+logging:
+  config: classpath:logback/logback-spring.xml
+  level:
+     com.htl.microservice.dao : info
+mybatis:
+  typeAliasesPackage: com.htl.microservice.entity
+  mapperLocations: classpath:mapper/*.xml
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+valid:
+  alert:
+    javax.validation.constraints.Null: $(paramname)必须为空
+    javax.validation.constraints.NotNull: $(paramname)不能为空
+    javax.validation.constraints.AssertTrue: $(paramname)必须为true
+    javax.validation.constraints.AssertFalse: $(paramname)必须为false
+    javax.validation.constraints.Min: $(paramname)必须大于$(value)
+    javax.validation.constraints.Max: $(paramname)必须小于$(value)
+    org.hibernate.validator.constraints.Length: $(paramname)的长度必须在$(min)和$(max)之间
+    javax.validation.constraints.DecimalMin: $(paramname)必须大于或等于$(value)
+    javax.validation.constraints.DecimalMax: $(paramname)必须小于或等于$(value)
+    javax.validation.constraints.Size: $(paramname)的大小必须在$(min)和$(max)之间
